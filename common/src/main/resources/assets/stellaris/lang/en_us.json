@@ -1069,5 +1069,20 @@
   "sd_card.stellaris.space_base_log_3.name": "Research Station - Vaccine Notes",
   "sd_card.stellaris.space_base_log_3.content": "Breakthrough. A vaccine grown from the parasite's own filaments halts the spread, and honey - ordinary honey - smothers the spores on contact. Its antimicrobial sugars starve them. We are synthesizing doses as fast as the reactors allow. For the first time since the meteor, I believe we might actually win this.",
   "sd_card.stellaris.stellaris_secrets.name": "Stellaris Easter Eggs",
-  "sd_card.stellaris.stellaris_secrets.content": "You.. You found this SD card ? This SD card contains a lot of Easter eggs hidden in Stellaris! Here a list of places where they are hidden : - The Home in the Earth wiki page - The other name of the moon on her wiki page - The parasite villager strikes back ? "
+  "sd_card.stellaris.stellaris_secrets.content": "You.. You found this SD card ? This SD card contains a lot of Easter eggs hidden in Stellaris! Here a list of places where they are hidden : - The Home in the Earth wiki page - The other name of the moon on her wiki page - The parasite villager strikes back ?",
+
+  "painting.stellaris.the_milky_way.title": "The Milky Way",
+  "painting.stellaris.sun.title": "Sun",
+  "painting.stellaris.earth.title": "Earth",
+  "painting.stellaris.moon.title": "Moon",
+  "painting.stellaris.mars.title": "Mars",
+  "painting.stellaris.mercury.title": "Mercury",
+  "painting.stellaris.venus.title": "Venus",
+  "painting.stellaris.neptune.title": "Neptune",
+  "painting.stellaris.saturn.title": "Saturn",
+  "painting.stellaris.jupiter.title": "Jupiter",
+  "painting.stellaris.pluto.title": "Pluto",
+  "painting.stellaris.uranus.title": "Uranus",
+  "painting.stellaris.proxima_centaury.title": "Proxima Centauri",
+  "painting.stellaris.glacio.title": "Glacio"
 }
