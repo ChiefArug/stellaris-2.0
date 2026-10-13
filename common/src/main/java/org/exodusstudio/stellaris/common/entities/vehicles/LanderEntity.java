@@ -5,6 +5,7 @@ import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -23,6 +24,7 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.exodusstudio.stellaris.Stellaris;
+import org.exodusstudio.stellaris.client.sounds.LanderSounds;
 import org.exodusstudio.stellaris.common.assistant.AssistantManager;
 import org.exodusstudio.stellaris.common.entities.vehicles.base.VehicleEntity;
 import org.exodusstudio.stellaris.common.keybinds.KeyVariables;
@@ -36,6 +38,7 @@ public class LanderEntity extends VehicleEntity {
 
     public static final EntityDataAccessor<Boolean> AUTOPILOT = SynchedEntityData.defineId(LanderEntity.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Boolean> LANDED = SynchedEntityData.defineId(LanderEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> THRUSTING = SynchedEntityData.defineId(LanderEntity.class, EntityDataSerializers.BOOLEAN);
 
     public LanderEntity(Level level, boolean autopilot) {
         this(EntityTypesRegistry.LANDER.get(), level);
@@ -121,8 +124,13 @@ public class LanderEntity extends VehicleEntity {
             this.setDeltaMovement(delta.x, terminalVelocity, delta.z);
         }
 
-        if (KeyVariables.isHoldingJump(getFirstPlayerPassenger()) || this.entityData.get(AUTOPILOT)) {
+        boolean thrusting = KeyVariables.isHoldingJump(getFirstPlayerPassenger()) || this.entityData.get(AUTOPILOT);
+        if (thrusting) {
             slowDownLander();
+        }
+
+        if (!this.level().isClientSide()) {
+            this.entityData.set(THRUSTING, thrusting && !this.onGround());
         }
 
         if (this.verticalCollisionBelow && !this.entityData.get(LANDED)) {
@@ -141,6 +149,16 @@ public class LanderEntity extends VehicleEntity {
 
     public boolean hasLanded() {
         return this.entityData.get(LANDED);
+    }
+
+    public boolean isThrusting() {
+        return this.entityData.get(THRUSTING);
+    }
+
+    @Override
+    public void recreateFromPacket(ClientboundAddEntityPacket packet) {
+        super.recreateFromPacket(packet);
+        LanderSounds.start(this);
     }
 
     public Player getFirstPlayerPassenger() {
@@ -221,5 +239,6 @@ public class LanderEntity extends VehicleEntity {
         super.defineSynchedData(builder);
         builder.define(AUTOPILOT, false);
         builder.define(LANDED, false);
+        builder.define(THRUSTING, false);
     }
 }

@@ -1084,5 +1084,8 @@
   "painting.stellaris.pluto.title": "Pluto",
   "painting.stellaris.uranus.title": "Uranus",
   "painting.stellaris.proxima_centaury.title": "Proxima Centauri",
-  "painting.stellaris.glacio.title": "Glacio"
+  "painting.stellaris.glacio.title": "Glacio",
+
+  "subtitles.stellaris.beep": "Lander warning beeps",
+  "subtitles.stellaris.sonic_boom": "Sonic boom"
 }

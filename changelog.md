@@ -2,6 +2,8 @@
 
 ## Additions
 - Add 14 space paintings
+- Add lander sounds
+- Add space suit sounds
 
 ## Changes
 - Improve I/O
