@@ -24,6 +24,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import org.exodusstudio.stellaris.Stellaris;
 import org.exodusstudio.stellaris.common.blocks.base.BaseLitMachineBlock;
 import org.exodusstudio.stellaris.common.blocks.entities.machines.base.BaseEnergyContainerBlockEntity;
+import org.exodusstudio.stellaris.common.blocks.entities.machines.base.ProgressingBlockEntity;
 import org.exodusstudio.stellaris.common.fluid.FluidUtil;
 import org.exodusstudio.stellaris.common.fluid.SingleFluidStorage;
 import org.exodusstudio.stellaris.common.items.CanItem;
@@ -39,7 +40,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class VacuumatorBlockEntity extends BaseEnergyContainerBlockEntity implements FluidProvider.BLOCK {
+public class VacuumatorBlockEntity extends BaseEnergyContainerBlockEntity implements FluidProvider.BLOCK, ProgressingBlockEntity {
     /** Slot 0: food (consumed), 1: can (consumed), 2: canned result, 3: empty fluid container, 4: filled container. */
     public static final int FOOD_SLOT = 0;
     public static final int CAN_SLOT = 1;
@@ -296,6 +297,16 @@ public class VacuumatorBlockEntity extends BaseEnergyContainerBlockEntity implem
 
     private boolean isLit() {
         return this.litTime > 0;
+    }
+
+    @Override
+    public boolean isInProgress() {
+        return isLit();
+    }
+
+    @Override
+    public float getProgress() {
+        return 1f - (float) litTime / Math.max(litDuration, litTime);
     }
 
     @Override

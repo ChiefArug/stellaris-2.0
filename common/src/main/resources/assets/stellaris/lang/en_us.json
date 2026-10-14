@@ -42,8 +42,13 @@
   "death.attack.stellaris.infection": "%1$s succumbed to the infection",
   "death.attack.stellaris.infection.player": "%1$s succumbed to the infection while fighting %2$s",
   "jade.stellaris.flag_owner": "Placed by %s",
+  "jade.stellaris.energy_generation": "Generating: %s FE/t",
+  "jade.stellaris.energy_usage": "Using: %s FE/t",
+  "jade.stellaris.oxygenated_blocks": "Oxygenating %s blocks",
   "config.jade.plugin_stellaris.proxy_as_main": "Multiblock Proxy as Main Block",
   "config.jade.plugin_stellaris.flag_owner": "Flag Owner",
+  "config.jade.plugin_stellaris.energy_rate": "Energy Generation and Usage",
+  "config.jade.plugin_stellaris.oxygen_distributor": "Oxygen Distributor Status",
 
   "itemGroup.stellaris.stellaris": "Stellaris",
   "itemGroup.stellaris.stellaris_blocks" : "Stellaris Blocks",

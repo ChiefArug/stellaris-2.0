@@ -9,7 +9,10 @@
 ## Changes
 - Improve I/O
 - Player pose when holding a rocket
+- Improve Jade compat
 
 ## Fixes
 - Fix water pump not working after a potentials update
 - Fix entity data synchronization issue on neoforge
+- Fix coal generator progress reset when reloading a world
+- Fix vehicles fluid capability

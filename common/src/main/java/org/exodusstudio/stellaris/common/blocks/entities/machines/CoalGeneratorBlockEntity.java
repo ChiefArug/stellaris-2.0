@@ -16,12 +16,13 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import org.exodusstudio.stellaris.common.blocks.CoalGeneratorBlock;
 import org.exodusstudio.stellaris.common.blocks.entities.machines.base.BaseGeneratorBlockEntity;
+import org.exodusstudio.stellaris.common.blocks.entities.machines.base.ProgressingBlockEntity;
 import org.exodusstudio.stellaris.common.menus.CoalGeneratorMenu;
 import org.exodusstudio.stellaris.common.registries.BlockEntitiesRegistry;
 import org.exodusstudio.stellaris.common.registries.TagsRegistry;
 import org.exodusstudio.stellaris.common.utils.capabilities.energy.EnergyUtil;
 
-public class CoalGeneratorBlockEntity extends BaseGeneratorBlockEntity {
+public class CoalGeneratorBlockEntity extends BaseGeneratorBlockEntity implements ProgressingBlockEntity {
 
     private int litTime;
     private int litDuration;
@@ -117,6 +118,16 @@ public class CoalGeneratorBlockEntity extends BaseGeneratorBlockEntity {
     }
 
     @Override
+    public boolean isInProgress() {
+        return isLit();
+    }
+
+    @Override
+    public float getProgress() {
+        return (float) litTime / Math.max(litDuration, litTime);
+    }
+
+    @Override
     public boolean canGenerate() {
         boolean isMaxEnergy = energyContainer.getEnergy() == energyContainer.getMaxEnergy();
         return isLit() && !isMaxEnergy;
@@ -128,12 +139,14 @@ public class CoalGeneratorBlockEntity extends BaseGeneratorBlockEntity {
         if (input.getInt("BurnTime").isPresent()) {
             litTime = input.getInt("BurnTime").get();
         }
+        litDuration = input.getIntOr("BurnDuration", litTime);
     }
 
     @Override
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
         output.putInt("BurnTime", this.litTime);
+        output.putInt("BurnDuration", this.litDuration);
     }
 
     @Override
