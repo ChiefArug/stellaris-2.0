@@ -32,6 +32,7 @@ import org.exodusstudio.stellaris.common.registries.BlockEntitiesRegistry;
 import org.exodusstudio.stellaris.common.registries.FluidsRegistry;
 import org.exodusstudio.stellaris.common.registries.RecipesRegistry;
 import org.exodusstudio.stellaris.common.utils.Utils;
+import org.exodusstudio.stellaris.common.utils.capabilities.energy.EnergyUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -107,11 +108,11 @@ public class FuelRefineryBlockEntity extends BaseEnergyContainerBlockEntity impl
         }
 
         Optional<RecipeHolder<FuelRefineryRecipe>> recipeHolder = cachedCheck.getRecipeFor(new FluidInput(level.getBlockEntity(getBlockPos())), (ServerLevel) level);
-        activeRecipeEnergy = recipeHolder.map(holder -> holder.value().energy()).orElse(0);
+        activeRecipeEnergy = recipeHolder.map(holder -> EnergyUtil.scaled(holder.value().energy())).orElse(0);
         if (recipeHolder.isPresent()) {
             FuelRefineryRecipe recipe = recipeHolder.get().value();
 
-            if (energyContainer.getEnergy() >= recipe.energy()) {
+            if (energyContainer.getEnergy() >= activeRecipeEnergy) {
                 if (inputTank.getFluidValueInTank() >= recipe.ingredientStack().amount()) {
                     if ((outputFuelTank.getFluidInTank(0).isEmpty() || outputFuelTank.getFluidInTank(0).getFluid().isSame(recipe.fuelStack().fluid().value())) &&
                             (outputDieselTank.getFluidInTank(0).isEmpty() || outputDieselTank.getFluidInTank(0).getFluid().isSame(recipe.dieselStack().fluid().value()))) {
@@ -128,7 +129,7 @@ public class FuelRefineryBlockEntity extends BaseEnergyContainerBlockEntity impl
 
                         if (shouldUseEnergyAndDrainOil) {
                             inputTank.drainWithoutLimits(recipe.ingredientStack().create(), false);
-                            useEnergy(recipe.energy());
+                            useEnergy(activeRecipeEnergy);
                             setChanged();
                         }
                     }

@@ -34,7 +34,7 @@ public class CableBlockEntity extends BlockEntity implements EnergyProvider.BLOC
         }
         int index = direction == null ? 6 : direction.ordinal();
         if (passthroughs[index] == null) {
-            passthroughs[index] = new PassthroughEnergyStorage(level, worldPosition, direction, cable.transferRate);
+            passthroughs[index] = new PassthroughEnergyStorage(level, worldPosition, direction, cable.getTransferRate());
         }
         return passthroughs[index];
     }

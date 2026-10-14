@@ -30,6 +30,7 @@ import org.exodusstudio.stellaris.common.registries.BlockEntitiesRegistry;
 import org.exodusstudio.stellaris.common.registries.FluidsRegistry;
 import org.exodusstudio.stellaris.common.utils.OxygenUtils;
 import org.exodusstudio.stellaris.common.utils.Utils;
+import org.exodusstudio.stellaris.common.utils.capabilities.energy.EnergyUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -118,7 +119,7 @@ public class OxygenDistributorBlockEntity extends BaseEnergyContainerBlockEntity
 
         if (OxygenUtils.hasBreathableAtmosphere(level)) {
             newStatus = OxygenUtils.OxygenStatus.BREATHABLE_ATMOSPHERE;
-        } else if (energyContainer.getEnergy() <= 0) {
+        } else if (energyContainer.getEnergy() < EnergyUtil.scaled(1)) {
             newStatus = OxygenUtils.OxygenStatus.NO_ENERGY;
         } else if (oxygenTank.isEmpty()) {
             newStatus = OxygenUtils.OxygenStatus.NO_OXYGEN;
@@ -136,7 +137,7 @@ public class OxygenDistributorBlockEntity extends BaseEnergyContainerBlockEntity
                     oxygenatedPosition.addAll(result.positions());
                 } else if (oxygenTank.getFluidValueInTank() >= livingEntitiesCount) {
                     oxygenTank.drainWithoutLimits(livingEntitiesCount, false);
-                    useEnergy(1);
+                    useEnergy(EnergyUtil.scaled(1));
                     oxygenatedPosition.addAll(result.positions());
                 } else {
                     newStatus = OxygenUtils.OxygenStatus.NOT_ENOUGH_OXYGEN;
@@ -281,6 +282,6 @@ public class OxygenDistributorBlockEntity extends BaseEnergyContainerBlockEntity
 
     @Override
     public int getMaxEnergyUsage() {
-        return 1;
+        return EnergyUtil.scaled(1);
     }
 }

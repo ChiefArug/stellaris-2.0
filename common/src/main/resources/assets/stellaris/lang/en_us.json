@@ -573,6 +573,11 @@
   "config.stellaris.assistantConfig.desc": "Settings related to the on-board assistant that comments on your exploration.",
   "config.stellaris.assistantConfig.enableAssistant.desc": "Enable or disable the assistant messages sent in chat.",
 
+  "config.stellaris.energyConfig": "Energy Settings",
+  "config.stellaris.energyMultiplier": "Energy Multiplier",
+  "config.stellaris.energyConfig.desc": "Settings related to how much energy Stellaris produces, stores and consumes.",
+  "config.stellaris.energyConfig.energyMultiplier.desc": "Multiplies every Stellaris energy value: generator output, machine and item costs, storage capacities and cable throughput. Ratios between them stay the same. Changes apply to machines when they are next loaded.",
+
   "config.stellaris.machineConfig": "Machine Settings",
   "config.stellaris.vacuumatorEnergyPerCraft": "Vacuumator Energy Per Craft",
   "config.stellaris.vacuumatorDurationMultiplier": "Vacuumator Duration Multiplier",

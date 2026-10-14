@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.exodusstudio.stellaris.Stellaris;
 import org.exodusstudio.stellaris.common.transport.Transport;
 import org.exodusstudio.stellaris.common.transport.TransportMedium;
 
@@ -14,6 +15,14 @@ import java.util.List;
 public class EnergyUtil {
 
     private static final List<Direction> ALL_DIRECTIONS = List.of(Direction.values());
+
+    public static int scaled(int baseAmount) {
+        if (baseAmount <= 0) {
+            return baseAmount;
+        }
+        long scaled = Math.round(baseAmount * Stellaris.CONFIG.energyConfig.energyMultiplier);
+        return Math.clamp(scaled, 1, Integer.MAX_VALUE);
+    }
 
     public static int moveEnergyToItem(UniversalEnergyStorage from, ItemStack stackTo, int amount) {
         if (stackTo.getCount() != 1) return 0;

@@ -33,6 +33,7 @@ import org.exodusstudio.stellaris.common.network.packets.SyncFluidPacketWithoutD
 import org.exodusstudio.stellaris.common.registries.BlockEntitiesRegistry;
 import org.exodusstudio.stellaris.common.registries.TagsRegistry;
 import org.exodusstudio.stellaris.common.utils.Utils;
+import org.exodusstudio.stellaris.common.utils.capabilities.energy.EnergyUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -202,7 +203,7 @@ public class VacuumatorBlockEntity extends BaseEnergyContainerBlockEntity implem
             litDuration = getVacuumationDuration(getItem(FOOD_SLOT));
             litTime = litDuration;
 
-            useEnergy(Stellaris.CONFIG.machineConfig.vacuumatorEnergyPerCraft);
+            useEnergy(EnergyUtil.scaled(Stellaris.CONFIG.machineConfig.vacuumatorEnergyPerCraft));
 
             removeItem(FOOD_SLOT, 1);
             removeItem(CAN_SLOT, 1);
@@ -239,7 +240,7 @@ public class VacuumatorBlockEntity extends BaseEnergyContainerBlockEntity implem
             return false;
         }
 
-        if (getEnergy(null).getEnergy() < Stellaris.CONFIG.machineConfig.vacuumatorEnergyPerCraft) {
+        if (getEnergy(null).getEnergy() < EnergyUtil.scaled(Stellaris.CONFIG.machineConfig.vacuumatorEnergyPerCraft)) {
             return false;
         }
 
@@ -313,6 +314,6 @@ public class VacuumatorBlockEntity extends BaseEnergyContainerBlockEntity implem
 
     @Override
     public int getMaxEnergyUsage() {
-        return isLit() || getVacuumationDuration(getItem(FOOD_SLOT)) > 0 ? Stellaris.CONFIG.machineConfig.vacuumatorEnergyPerCraft : 0;
+        return isLit() || getVacuumationDuration(getItem(FOOD_SLOT)) > 0 ? EnergyUtil.scaled(Stellaris.CONFIG.machineConfig.vacuumatorEnergyPerCraft) : 0;
     }
 }

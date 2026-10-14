@@ -121,6 +121,15 @@ public class CommonConfig implements PostValidation {
     }
 
     @ScreenInfos.InnerConfig
+    @ScreenInfos.Description("config.stellaris.energyConfig.desc")
+    public EnergyConfig energyConfig = new EnergyConfig();
+
+    public static class EnergyConfig {
+        @ScreenInfos.Description(value = "config.stellaris.energyConfig.energyMultiplier.desc")
+        public double energyMultiplier = 15.0;
+    }
+
+    @ScreenInfos.InnerConfig
     @ScreenInfos.Description("config.stellaris.machineConfig.desc")
     public MachineConfig machineConfig = new MachineConfig();
 
@@ -180,6 +189,8 @@ public class CommonConfig implements PostValidation {
         effectsConfig.infectionDamage = atLeast("effectsConfig.infectionDamage", effectsConfig.infectionDamage, 0F);
         effectsConfig.corrosionTickInterval = atLeast("effectsConfig.corrosionTickInterval", effectsConfig.corrosionTickInterval, 0);
         effectsConfig.corrosionDamage = atLeast("effectsConfig.corrosionDamage", effectsConfig.corrosionDamage, 0F);
+
+        energyConfig.energyMultiplier = atLeast("energyConfig.energyMultiplier", energyConfig.energyMultiplier, 0.01);
 
         machineConfig.vacuumatorEnergyPerCraft = atLeast("machineConfig.vacuumatorEnergyPerCraft", machineConfig.vacuumatorEnergyPerCraft, 0);
         machineConfig.vacuumatorDurationMultiplier = atLeast("machineConfig.vacuumatorDurationMultiplier", machineConfig.vacuumatorDurationMultiplier, 1);

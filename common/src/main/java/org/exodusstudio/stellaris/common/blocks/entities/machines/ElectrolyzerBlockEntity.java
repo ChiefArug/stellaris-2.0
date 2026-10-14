@@ -34,6 +34,7 @@ import org.exodusstudio.stellaris.common.network.packets.SyncFluidPacket;
 import org.exodusstudio.stellaris.common.registries.BlockEntitiesRegistry;
 import org.exodusstudio.stellaris.common.registries.RecipesRegistry;
 import org.exodusstudio.stellaris.common.utils.Utils;
+import org.exodusstudio.stellaris.common.utils.capabilities.energy.EnergyUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -105,11 +106,11 @@ public class ElectrolyzerBlockEntity extends BaseEnergyContainerBlockEntity impl
 
         if (level instanceof ServerLevel serverLevel) {
             Optional<RecipeHolder<ElectrolyzeRecipe>> recipeHolder = cachedCheck.getRecipeFor(new FluidInput(this), serverLevel);
-            activeRecipeEnergy = recipeHolder.map(holder -> (int) holder.value().energy()).orElse(0);
+            activeRecipeEnergy = recipeHolder.map(holder -> EnergyUtil.scaled((int) holder.value().energy())).orElse(0);
             if (recipeHolder.isPresent()) {
                 ElectrolyzeRecipe recipe = recipeHolder.get().value();
 
-                if (energyContainer.getEnergy() >= recipe.energy()) {
+                if (energyContainer.getEnergy() >= activeRecipeEnergy) {
                     boolean shouldDrainWaterAndEnergy = false;
 
                     FluidStack resultStack0 = recipe.resultStacks().getFirst().create();
@@ -128,7 +129,7 @@ public class ElectrolyzerBlockEntity extends BaseEnergyContainerBlockEntity impl
 
                     if (shouldDrainWaterAndEnergy) {
                         ingredientTank.drainWithoutLimits(ingredientStack, false);
-                        useEnergy((int) recipe.energy());
+                        useEnergy(activeRecipeEnergy);
                     }
                 }
             }
