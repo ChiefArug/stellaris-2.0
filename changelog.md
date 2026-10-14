@@ -12,3 +12,4 @@
 
 ## Fixes
 - Fix water pump not working after a potentials update
+- Fix entity data synchronization issue on neoforge
