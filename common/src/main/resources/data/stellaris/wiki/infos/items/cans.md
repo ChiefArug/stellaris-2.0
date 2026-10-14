@@ -8,7 +8,7 @@ Cans are used to store food. You fill them with the [ref=stellaris:machines/vacu
 
 [item=stellaris:big_lime_can]
 
-Cans are the only way to eat in space. Outside a room with oxygen, no ordinary food can be swallowed at all - only a can. 
+Cans are the only way to eat in space. On a planet without a breathable atmosphere, no ordinary food can be swallowed at all. 
 
 
 

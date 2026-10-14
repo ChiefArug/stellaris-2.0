@@ -20,7 +20,7 @@ public class ConsumableMixin {
     public void canConsume(LivingEntity entity, ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         if (stack.has(DataComponents.FOOD) && !stack.is(TagsRegistry.ItemTags.CAN)
                 && !stack.is(TagsRegistry.ItemTags.EDIBLE_IN_SPACE)
-                && !OxygenUtils.isOxygenated(entity.level(), entity.blockPosition())) {
+                && !OxygenUtils.hasBreathableAtmosphere(entity.level())) {
             cir.setReturnValue(false);
             return;
         }
