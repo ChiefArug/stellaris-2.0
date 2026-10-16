@@ -5,11 +5,13 @@
 - Add lander sounds
 - Add space suit sounds
 - Add an energy multiplier config option
+- Add a config option for the fluid the pumpjack extracts
 
 ## Changes
 - Improve I/O
 - Player pose when holding a rocket
 - Improve Jade compat
+- The fuel refinery and the pumpjack and refinery oil slots accept any fluid in the c:oil tag
 
 ## Fixes
 - Fix water pump not working after a potentials update

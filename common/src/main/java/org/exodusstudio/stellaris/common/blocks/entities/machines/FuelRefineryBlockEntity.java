@@ -31,6 +31,7 @@ import org.exodusstudio.stellaris.common.network.packets.SyncFluidPacket;
 import org.exodusstudio.stellaris.common.registries.BlockEntitiesRegistry;
 import org.exodusstudio.stellaris.common.registries.FluidsRegistry;
 import org.exodusstudio.stellaris.common.registries.RecipesRegistry;
+import org.exodusstudio.stellaris.common.registries.TagsRegistry;
 import org.exodusstudio.stellaris.common.utils.Utils;
 import org.exodusstudio.stellaris.common.utils.capabilities.energy.EnergyUtil;
 import org.jetbrains.annotations.NotNull;
@@ -62,7 +63,7 @@ public class FuelRefineryBlockEntity extends BaseEnergyContainerBlockEntity impl
 
             @Override
             public boolean isFluidValid(int tank, FluidStack stack) {
-                return stack.getFluid().isSame(FluidsRegistry.OIL_STILL.get());
+                return stack.getFluid().defaultFluidState().is(TagsRegistry.FluidTags.OIL);
             }
         };
 
@@ -177,7 +178,7 @@ public class FuelRefineryBlockEntity extends BaseEnergyContainerBlockEntity impl
         }
 
         return switch (slot) {
-            case 0 -> SpecificFluidContainerSlot.accepts(stack, FluidsRegistry.OIL_STILL.get(), true);
+            case 0 -> SpecificFluidContainerSlot.accepts(stack, TagsRegistry.FluidTags.OIL, true);
             case 2 -> SpecificFluidContainerSlot.accepts(stack, FluidsRegistry.FUEL_STILL.get(), true);
             case 4 -> SpecificFluidContainerSlot.accepts(stack, FluidsRegistry.DIESEL_STILL.get(), true);
             default -> false;

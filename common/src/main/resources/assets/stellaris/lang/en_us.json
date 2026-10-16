@@ -515,6 +515,8 @@
   "config.stellaris.minOil": "Minimum Oil",
   "config.stellaris.maxOil": "Maximum Oil",
   "config.stellaris.oilExtractionPerTick": "Oil Extraction Per Tick",
+  "config.stellaris.pumpjackFluid": "Pumpjack Output Fluid",
+  "config.stellaris.oilConfig.pumpjackFluid.desc": "The fluid the Pumpjack extracts, as a fluid ID. Defaults to stellaris:oil. The Fuel Refinery and the oil slots accept any fluid in the c:oil tag.",
 
   "config.stellaris.gravityConfig": "Gravity Settings",
   "config.stellaris.enableGravityEffects": "Enable Gravity Effects",

@@ -11,8 +11,8 @@ import org.exodusstudio.stellaris.common.menus.base.EnergyUsageSync;
 import org.exodusstudio.stellaris.common.menus.base.BaseContainer;
 import org.exodusstudio.stellaris.common.menus.slot.ResultSlot;
 import org.exodusstudio.stellaris.common.menus.slot.SpecificFluidContainerSlot;
-import org.exodusstudio.stellaris.common.registries.FluidsRegistry;
 import org.exodusstudio.stellaris.common.registries.MenuTypesRegistry;
+import org.exodusstudio.stellaris.common.registries.TagsRegistry;
 
 public class PumpjackMenu extends BaseContainer implements EnergyUsageMenu {
 
@@ -33,7 +33,7 @@ public class PumpjackMenu extends BaseContainer implements EnergyUsageMenu {
         checkContainerSize(container, 2);
 
         // Result tank
-        addSlot(new SpecificFluidContainerSlot(container, FluidsRegistry.OIL_STILL.get() ,0, 136, 44, true));
+        addSlot(new SpecificFluidContainerSlot(container, TagsRegistry.FluidTags.OIL, 0, 136, 44, true));
         addSlot(new ResultSlot(container, 1, 136, 78));
     }
 

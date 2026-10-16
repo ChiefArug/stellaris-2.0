@@ -3,7 +3,9 @@ package org.exodusstudio.stellaris.common.config;
 import fr.tathan.exoconfig.common.infos.ConfigInfos;
 import fr.tathan.exoconfig.common.infos.ScreenInfos;
 import fr.tathan.exoconfig.common.post_validation.PostValidation;
+import net.minecraft.resources.Identifier;
 import org.exodusstudio.stellaris.Stellaris;
+import org.exodusstudio.stellaris.common.utils.IdentifierUtils;
 
 @ConfigInfos(modDisplayName = "Stellaris", name = "stellaris")
 public class CommonConfig implements PostValidation {
@@ -18,6 +20,9 @@ public class CommonConfig implements PostValidation {
         public int maxOil = 50000;
 
         public int oilExtractionPerTick = 5;
+
+        @ScreenInfos.Description(value = "config.stellaris.oilConfig.pumpjackFluid.desc")
+        public Identifier pumpjackFluid = IdentifierUtils.id("oil");
     }
 
     @ScreenInfos.InnerConfig
