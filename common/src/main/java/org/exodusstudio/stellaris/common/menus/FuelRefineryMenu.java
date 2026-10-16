@@ -13,6 +13,7 @@ import org.exodusstudio.stellaris.common.menus.slot.ResultSlot;
 import org.exodusstudio.stellaris.common.menus.slot.SpecificFluidContainerSlot;
 import org.exodusstudio.stellaris.common.registries.FluidsRegistry;
 import org.exodusstudio.stellaris.common.registries.MenuTypesRegistry;
+import org.exodusstudio.stellaris.common.registries.TagsRegistry;
 
 public class FuelRefineryMenu extends BaseContainer implements EnergyUsageMenu {
 
@@ -32,7 +33,7 @@ public class FuelRefineryMenu extends BaseContainer implements EnergyUsageMenu {
         this.energyUsage = EnergyUsageSync.create(this.blockEntity, inventory);
 
         // Ingredient tank
-        addSlot(new SpecificFluidContainerSlot(container, FluidsRegistry.OIL_STILL.get(), 0, 14, 76, true));
+        addSlot(new SpecificFluidContainerSlot(container, TagsRegistry.FluidTags.OIL, 0, 14, 76, true));
         addSlot(new ResultSlot(container, 1, 14, 110));
 
         // Fuel tank
