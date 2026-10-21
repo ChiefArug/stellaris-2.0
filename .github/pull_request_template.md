@@ -1,5 +1,5 @@
 ### Description 
-<!-- A brief description of the bug this fixes, the feature this adds, or provide a link to the issue this closes -->
+<!-- A brief description of the bug this fixes or the feature this adds -->
 
 
 Fixes <!-- Add a link to issue this fixes, if there is one. Otherwise delete this line -->
