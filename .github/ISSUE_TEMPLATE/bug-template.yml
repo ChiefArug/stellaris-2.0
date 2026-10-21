@@ -2,13 +2,6 @@ name: Bug Report
 description: Report a bug or crash with Stellaris
 labels: [ bug ]
 body:
-  - type: input
-    id: mc-version
-    attributes:
-      label: Minecraft Version
-      placeholder: "Ex: 1.18.1"
-    validations:
-      required: true
 
   - type: input
     id: stellaris-version
@@ -34,11 +27,12 @@ body:
     id: description
     attributes:
       label: Describe the issue
+      placeholder: Space suits do not function on the moon
     validations:
       required: true
 
   - type: textarea
-    id: description
+    id: reproduction-steps
     attributes:
       label: How to reproduce
       placeholder: |
